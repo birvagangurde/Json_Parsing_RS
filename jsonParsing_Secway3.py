@@ -12,6 +12,7 @@ with open('C:\\Users\\BIRVA\\Downloads\\BackEndAutomation_Part1\\BackEndAutomati
     print(type(data['dashboard']))
     print(type(data['courses']))
 
+
     # The price of course "RPA"
 
     for course in data['courses']:
