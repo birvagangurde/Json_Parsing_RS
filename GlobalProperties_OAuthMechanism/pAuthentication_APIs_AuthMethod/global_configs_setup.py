@@ -2,6 +2,7 @@
 import json
 import configparser
 
+from utilities.resources import ApiResources
 from GlobalProperties_OAuthMechanism.utilities.configurations import getConfig
 from end_to_end_payload1 import *
 
@@ -12,8 +13,11 @@ import requests
 # config.read('utilities/properties.ini')
 # config['API']['endpoint']
 
-addBook_response = requests.post(getConfig()['API']['endpoint'] + '/Library/Addbook.php', json=addBookPayload("bhdt"),
-                                 headers={'Content-Type': "application/json"}
+# after
+url = getConfig()['API']['endpoint'] + ApiResources.addBook
+headers = {'Content-Type': "application/json"}
+addBook_response = requests.post(url, json=addBookPayload("bhdt"),
+                                 headers=headers
                                  )
 
 # The combination should be unique of the json code added otherwise it will state the book already exists
