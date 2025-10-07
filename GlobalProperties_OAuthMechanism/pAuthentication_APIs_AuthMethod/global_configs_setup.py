@@ -3,7 +3,7 @@ import json
 import configparser
 
 from utilities.resources import ApiResources
-from GlobalProperties_OAuthMechanism.utilities.configurations import getConfig
+from GlobalProperties_OAuthMechanism.pAuthentication_APIs_AuthMethod.utilities.configurations import *
 from end_to_end_payload1 import *
 
 import requests
@@ -16,7 +16,7 @@ import requests
 # after
 url = getConfig()['API']['endpoint'] + ApiResources.addBook
 headers = {'Content-Type': "application/json"}
-addBook_response = requests.post(url, json=addBookPayload("bhdt"),
+addBook_response = requests.post(url, verify=False, json=addBookPayload("bhdt"),
                                  headers=headers
                                  )
 
@@ -49,3 +49,11 @@ res_json = response_deleteBook.json()
 print(res_json["msg"])
 
 assert res_json["msg"] == "book is successfully deleted"
+
+
+
+url = 'https://api.github.com/user'
+
+github_response = requests.get(url, auth=('sanjanamesh', getPassword()))
+
+print(github_response.status_code)
